@@ -13,20 +13,20 @@ from domainbed.lib.misc import random_pairs_of_minibatches
 
 ALGORITHMS = [
     'ERM',
-    'IRM',
-    'GroupDRO',
-    'Mixup',
-    'MLDG',
-    'CORAL',
-    'MMD',
-    'DANN', 
-    'CDANN', 
-    'MTL', 
-    'SagNet',
-    'ARM',
-    'VREx',
-    'RSC',
-    'SD',
+#     'IRM',
+#     'GroupDRO',
+#     'Mixup',
+#     'MLDG',
+#     'CORAL',
+#     'MMD',
+#     'DANN', 
+#     'CDANN', 
+#     'MTL', 
+#     'SagNet',
+#     'ARM',
+#     'VREx',
+#     'RSC',
+#     'SD',
     'SelfReg'
 ]
 
@@ -92,16 +92,16 @@ class ERM(Algorithm):
     def predict(self, x):
         return self.network(x)
 
-#Ours 
+# Ours 
 class SelfReg(ERM):
     def __init__(self, input_shape, num_classes, num_domains, hparams):
         super(SelfReg, self).__init__(input_shape, num_classes, num_domains,
                                    hparams)
         self.num_classes = num_classes
         self.MSEloss = nn.MSELoss()
-        input_feat_size = 2048
+        input_feat_size = 2048  # if used CNN for RMNIST and CMNIST , input_feat_size = 128, hidden_size = 256
         hidden_size = input_feat_size
-        self.projection = nn.Sequential(
+        self.cdpl = nn.Sequential(
                             nn.Linear(input_feat_size, hidden_size),
                             nn.BatchNorm1d(hidden_size),
                             nn.ReLU(inplace=True),
@@ -121,12 +121,12 @@ class SelfReg(ERM):
         
         batch_size = all_y.size()[0]
         
-        with torch.no_grad():
+        # cluster and order features into same-class group
+        with torch.no_grad():   
             sorted_y, indices = torch.sort(all_y)
             sorted_x = torch.zeros_like(all_x)
             for idx, order in enumerate(indices):
                 sorted_x[idx] = all_x[order]
-
             intervals = []
             ex = 0
             for idx, val in enumerate(sorted_y):
@@ -140,10 +140,11 @@ class SelfReg(ERM):
             all_y = sorted_y
         
         feat = self.featurizer(all_x)
-        proj = self.projection(feat)
+        proj = self.cdpl(feat)
         
         output = self.classifier(feat)
 
+        # shuffle
         output_2 = torch.zeros_like(output)
         feat_2 = torch.zeros_like(proj)
         output_3 = torch.zeros_like(output)
@@ -159,17 +160,19 @@ class SelfReg(ERM):
                 feat_3[idx+ex] = proj[shuffle_indices2[idx]]
             ex = end
         
+        # mixup 
         output_3 = lam*output_2 + (1-lam)*output_3
         feat_3 = lam*feat_2 + (1-lam)*feat_3
 
-        SelfReg_loss = self.MSEloss(output, output_2)
-        SelfReg_mixup = self.MSEloss(output, output_3)
-        EFM_loss = 0.3 * self.MSEloss(feat, feat_2)
-        EFM_mixup = 0.3 * self.MSEloss(feat, feat_3)
+        # regularization
+        L_ind_logit = self.MSEloss(output, output_2)
+        L_hdl_logit = self.MSEloss(output, output_3)
+        L_ind_feat = 0.3 * self.MSEloss(feat, feat_2)
+        L_hdl_feat = 0.3 * self.MSEloss(feat, feat_3)
         
         cl_loss = F.cross_entropy(output, all_y)
         C_scale = min(cl_loss.item(), 1.)
-        loss = cl_loss + C_scale*(lam*(SelfReg_loss + EFM_loss)+(1-lam)*(SelfReg_mixup + EFM_mixup))
+        loss = cl_loss + C_scale*(lam*(L_ind_logit + L_ind_feat)+(1-lam)*(L_hdl_logit + L_hdl_feat))
      
         self.optimizer.zero_grad()
         loss.backward()
