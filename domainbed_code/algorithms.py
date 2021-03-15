@@ -92,7 +92,7 @@ class ERM(Algorithm):
     def predict(self, x):
         return self.network(x)
 
-
+#Ours 
 class SelfReg(ERM):
     def __init__(self, input_shape, num_classes, num_domains, hparams):
         super(SelfReg, self).__init__(input_shape, num_classes, num_domains,
