@@ -1,5 +1,5 @@
 # SelfReg
-PyTorch implementation of self-supervised regularization for DG (SelfReg)
+PyTorch implementation of Self-supervised Contrastive Regularization for Domain Generalization (SelfReg)
 
 ## Description
 ![method](https://user-images.githubusercontent.com/44395361/112263134-26ebff80-8cb2-11eb-9934-d74f44440235.png)
