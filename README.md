@@ -8,6 +8,17 @@ An overview of our proposed SelfReg. Here, we propose to use the self-supervised
 ![tsne](https://user-images.githubusercontent.com/44395361/112265547-01f98b80-8cb6-11eb-84d8-e62de4eda247.png)
 Visualizations by t-SNE for (a) baseline (no DG techniques), (b) [RSC](https://arxiv.org/abs/2007.02454), and (c) ours. For better understanding, we also provide sample images of house from all target domains. Note that we differently color-coded each points according to its class. (Data: [PACS](https://domaingeneralization.github.io/#data))
 
+## Computational Efficiency of IDCL (Inter-domain Curriculum Learning)
+| Setup | Training Time(s)|
+| :--------------:| :-----------: |
+| Baseline (classic training strategy) |1556.8|
+| IDCL strategy | 1283.5|
+
+We used one V100 GPU for model training.
+The training time in above table is the time it took to train all domains independently.
+The training time of the IDCL is 1283.5 seconds, equivalent to 82.4% of baseline on PACS.
+
+
 ## Dependency
 - python >= 3.6
 - pytorch >= 1.7.0
