@@ -252,14 +252,14 @@ def classic_training(device, epochs, model,optimizer,
                 output_3 = lam*output_2 + (1-lam)*output_3
                 feat_3 = lam*feat_2 + (1-lam)*feat_3
                 
-                SelfReg_loss = SelfReg_criterion(output, output_2)
-                SelfReg_mixup = SelfReg_criterion(output, output_3)
-                EFM_loss = 0.3 * SelfReg_criterion(feat, feat_2)
-                EFM_mixup = 0.3 * SelfReg_criterion(feat, feat_3)
+                L_ind_logit = SelfReg_criterion(output, output_2)
+                L_hdl_logit = SelfReg_criterion(output, output_3)
+                L_ind_feat = 0.3 * SelfReg_criterion(feat, feat_2)
+                L_hdl_feat = 0.3 * SelfReg_criterion(feat, feat_3)
                 
                 cl_loss = criterion(output,y)
                 c_scale = min(cl_loss.item(), 1.)
-                loss = cl_loss + c_scale*(lam*(SelfReg_loss + EFM_loss)+(1-lam)*(SelfReg_mixup + EFM_mixup))
+                loss = cl_loss + c_scale*(lam*(L_ind_logit + L_ind_feat)+(1-lam)*(L_hdl_logit + L_hdl_feat))
                 
     
                 
@@ -487,15 +487,15 @@ def IDCL_training(device, epochs, model,optimizer, criterion,
                 
                 
         
-                SelfReg_loss = SelfReg_criterion(output, output_2)
-                SelfReg_mixup = SelfReg_criterion(output, output_3)
-                EFM_loss = 0.3 * SelfReg_criterion(feat, feat_2)
-                EFM_mixup = 0.3 * SelfReg_criterion(feat, feat_3)
+                L_ind_logit = SelfReg_criterion(output, output_2)
+                L_hdl_logit = SelfReg_criterion(output, output_3)
+                L_ind_feat = 0.3 * SelfReg_criterion(feat, feat_2)
+                L_hdl_feat = 0.3 * SelfReg_criterion(feat, feat_3)
                 
         
                 cl_loss = criterion(output,y)
                 c_scale = min(cl_loss.item(), 1.)
-                loss = cl_loss + c_scale*(lam*(SelfReg_loss + EFM_loss)+(1-lam)*(SelfReg_mixup + EFM_mixup))
+                loss = cl_loss + c_scale*(lam*(L_ind_logit + L_ind_feat)+(1-lam)*(L_hdl_logit + L_hdl_feat))
             else:
                 loss = cl_loss
             
