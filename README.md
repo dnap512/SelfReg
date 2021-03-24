@@ -33,11 +33,14 @@ The training time of the IDCL is 1283.5 seconds, equivalent to 82.4% of baseline
 4. Check the results stored in path `codes/resnet18/{save_name}/` when the training is completed.
 
 ## Test trained SelfReg ResNet18 model
-To test a ResNet18, you can download SelfReg model below.
-| Backbone        | Target Domain |Acc %            | models |
-| :--------------:| :-----------: | :------------:  |:------------: |
-| ResNet-18       |Photo          |96.83            |[download]()   |
-| ResNet-18       |Art Painting         |83.15            |[download]()   |
-| ResNet-18       |Cartoon        |79.61            |[download]()   |
-| ResNet-18       |Sketch            |78.90            |[download]()  |
+To test a ResNet18, you can download SelfReg model with command below.
+```bash
+  gdown --id 1sGamN3DYKGs4laosp23O4DpO-JDE5W0p --output resnet18_selfreg.zip
+```
+| Backbone        | Target Domain |Acc %            
+| :--------------:| :-----------: | :------------:  
+| ResNet-18       |Photo          |96.83            
+| ResNet-18       |Art Painting         |83.15            
+| ResNet-18       |Cartoon        |79.61            
+| ResNet-18       |Sketch            |78.90           
 
