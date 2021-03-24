@@ -14,9 +14,9 @@ Visualizations by t-SNE for (a) baseline (no DG techniques), (b) [RSC](https://a
 - torchvision >= 0.8.1
 
 
-## Easy Run
+## How to Use
 
-1. `cd codes/` and run `sh download.sh` to download PACS dataset.
+1. `cd codes/` and `sh download.sh` to download PACS dataset.
 2. Open `train.ipynb` and `Run All`.
 3. Make sure that the training is running well in the last cell.
 4. Check the results stored in path `codes/resnet18/{save_name}/` when the training is completed.
