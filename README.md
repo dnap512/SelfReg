@@ -20,3 +20,13 @@ Visualizations by t-SNE for (a) baseline (no DG techniques), (b) [RSC](https://a
 2. Open `train.ipynb` and `Run All`.
 3. Make sure that the training is running well in the last cell.
 4. Check the results stored in path `codes/resnet18/{save_name}/` when the training is completed.
+
+## Test trained SelfReg ResNet18 model
+To test a ResNet18, you can download SelfReg model below.
+| Backbone        | Target Domain |Acc %            | models |
+| :--------------:| :-----------: | :------------:  |:------------: |
+| ResNet-18       |Photo          |96.83            |[download]()   |
+| ResNet-18       |Art         |83.15            |[download]()   |
+| ResNet-18       |Cartoon        |79.61            |[download]()   |
+| ResNet-18       |Sketch            |78.90            |[download]()  |
+
