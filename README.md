@@ -9,7 +9,7 @@ An overview of our proposed SelfReg. Here, we propose to use the self-supervised
 Visualizations by t-SNE for (a) baseline (no DG techniques), (b) [RSC](https://arxiv.org/abs/2007.02454), and (c) ours. For better understanding, we also provide sample images of house from all target domains. Note that we differently color-coded each points according to its class. (Data: [PACS](https://domaingeneralization.github.io/#data))
 
 ## Computational Efficiency of IDCL (Inter-domain Curriculum Learning)
-| Setup | Training Time(s)|
+| Training Strategy | Training Time(s)|
 | :--------------:| :-----------: |
 | Baseline (classic training strategy) |1556.8|
 | IDCL strategy | 1283.5|
