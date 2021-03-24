@@ -26,7 +26,7 @@ To test a ResNet18, you can download SelfReg model below.
 | Backbone        | Target Domain |Acc %            | models |
 | :--------------:| :-----------: | :------------:  |:------------: |
 | ResNet-18       |Photo          |96.83            |[download]()   |
-| ResNet-18       |Art         |83.15            |[download]()   |
+| ResNet-18       |Art Painting         |83.15            |[download]()   |
 | ResNet-18       |Cartoon        |79.61            |[download]()   |
 | ResNet-18       |Sketch            |78.90            |[download]()  |
 
