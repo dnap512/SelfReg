@@ -33,10 +33,9 @@ The training time of the IDCL is 1283.5 seconds, equivalent to 82.4% of baseline
 4. Check the results stored in path `codes/resnet18/{save_name}/` when the training is completed.
 
 ## Test trained SelfReg ResNet18 model
-To test a ResNet18, you can download SelfReg model with command below.
-```bash
-  gdown --id 1sGamN3DYKGs4laosp23O4DpO-JDE5W0p --output resnet18_selfreg.zip
-```
+To test a ResNet18, you can download pretrained weights (SelfReg model) with this [link](https://drive.google.com/file/d/1sGamN3DYKGs4laosp23O4DpO-JDE5W0p/view?usp=sharing).
+
+These weights wrapped  `torch.optim.swa_utils.AveragedModel()` (SWA implementation of PyTorch).
 | Backbone        | Target Domain |Acc %            
 | :--------------:| :-----------: | :------------:  
 | ResNet-18       |Photo          |96.83            
