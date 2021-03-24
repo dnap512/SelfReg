@@ -12,7 +12,7 @@ Visualizations by t-SNE for (a) baseline (no DG techniques), (b) [RSC](https://a
 - python >= 3.6
 - pytorch >= 1.7.0
 - torchvision >= 0.8.1
-
+- gdown
 
 ## How to Use
 
