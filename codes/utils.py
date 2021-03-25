@@ -190,6 +190,7 @@ def classic_training(device, epochs, model,optimizer,
             ########## Self-reg
             ########################
             
+            # cluster and order features into same-class group
             if is_self_reg or is_positive_pair:
                 batch_size = y.size()[0]
 
@@ -230,6 +231,7 @@ def classic_training(device, epochs, model,optimizer,
             ########## Self-reg
             ########################
             
+            # shuffle
             if is_self_reg:
                 output_2 = torch.zeros_like(output)
                 feat_2 = torch.zeros_like(proj)
@@ -249,9 +251,11 @@ def classic_training(device, epochs, model,optimizer,
                 
                 lam = np.random.beta(0.5,0.5)
                 
+                # mixup
                 output_3 = lam*output_2 + (1-lam)*output_3
                 feat_3 = lam*feat_2 + (1-lam)*feat_3
                 
+                # regularization
                 L_ind_logit = SelfReg_criterion(output, output_2)
                 L_hdl_logit = SelfReg_criterion(output, output_3)
                 L_ind_feat = 0.3 * SelfReg_criterion(feat, feat_2)
@@ -425,6 +429,7 @@ def IDCL_training(device, epochs, model,optimizer, criterion,
             ########## Self-reg
             ########################
             
+            # cluster and order features into same-class group
             if is_self_reg:
                 batch_size = y.size()[0]
 
@@ -461,7 +466,7 @@ def IDCL_training(device, epochs, model,optimizer, criterion,
             ########## Self-reg
             ########################
             
-            
+            # shuffle
             if is_self_reg:
                 
                 output_2 = torch.zeros_like(output)
@@ -482,11 +487,12 @@ def IDCL_training(device, epochs, model,optimizer, criterion,
                 
                 lam = np.random.beta(0.5,0.5)
                 
+                # mixup
                 output_3 = lam*output_2 + (1-lam)*output_3
                 feat_3 = lam*feat_2 + (1-lam)*feat_3
                 
                 
-        
+                # regularization
                 L_ind_logit = SelfReg_criterion(output, output_2)
                 L_hdl_logit = SelfReg_criterion(output, output_3)
                 L_ind_feat = 0.3 * SelfReg_criterion(feat, feat_2)
@@ -604,7 +610,7 @@ def get_tf(augment=True):
 
 # -
 
-#모델 세팅 저장
+# save setting
 def save_model_setting(settings,used_model,domains, dataset, save_name):
     text_file_name="model_parameter_setting_info.txt"
     save_dir = os.path.join(used_model,dataset,save_name)
