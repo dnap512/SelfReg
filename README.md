@@ -23,6 +23,7 @@ The training time of the IDCL is 1283.5 seconds, equivalent to 82.4% of baseline
 - python >= 3.6
 - pytorch >= 1.7.0
 - torchvision >= 0.8.1
+- jupyter notebook
 - gdown
 
 ## How to Use
