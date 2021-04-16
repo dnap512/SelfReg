@@ -44,3 +44,6 @@ These weights are wrapped  `torch.optim.swa_utils.AveragedModel()` (SWA implemen
 | ResNet-18       |Cartoon        |79.61            
 | ResNet-18       |Sketch            |78.90           
 
+
+## Benchmark of SelfReg in [DomainBed](https://github.com/facebookresearch/DomainBed)
+![domainbed](domainbed_selfreg.png)
