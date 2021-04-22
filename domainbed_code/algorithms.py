@@ -99,8 +99,9 @@ class SelfReg(ERM):
                                    hparams)
         self.num_classes = num_classes
         self.MSEloss = nn.MSELoss()
-        input_feat_size = 2048  # if used CNN for RMNIST and CMNIST , input_feat_size = 128, hidden_size = 256
-        hidden_size = input_feat_size
+        input_feat_size = self.featurizer.n_outputs
+        hidden_size = input_feat_size if input_feat_size==2048 else input_feat_size*2
+        
         self.cdpl = nn.Sequential(
                             nn.Linear(input_feat_size, hidden_size),
                             nn.BatchNorm1d(hidden_size),
