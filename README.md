@@ -1,5 +1,5 @@
 # SelfReg: Self-supervised Contrastive Regularization for Domain Generalization
-PyTorch official implementation of (Daehee Kim, Seunghyun Park, Jinkyu Kim, and Jaekoo Lee. "SelfReg: Self-supervised Contrastive Regularization for Domain Generalization." ICCV, 2021). - [arxiv version](https://arxiv.org/abs/2104.09841)
+PyTorch official implementation of (Daehee Kim, Youngjun Yoo, Seunghyun Park, Jinkyu Kim, and Jaekoo Lee. "SelfReg: Self-supervised Contrastive Regularization for Domain Generalization." ICCV, 2021). - [arxiv version](https://arxiv.org/abs/2104.09841)
 
 ## Description
 ![method](https://user-images.githubusercontent.com/44395361/112263134-26ebff80-8cb2-11eb-9934-d74f44440235.png)
