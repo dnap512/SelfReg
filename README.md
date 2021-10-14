@@ -1,5 +1,16 @@
 # SelfReg: Self-supervised Contrastive Regularization for Domain Generalization
-PyTorch official implementation of (Daehee Kim, Youngjun Yoo, Seunghyun Park, Jinkyu Kim, and Jaekoo Lee. "SelfReg: Self-supervised Contrastive Regularization for Domain Generalization." ICCV, 2021). - [arxiv version](https://arxiv.org/abs/2104.09841)
+PyTorch official implementation of (Daehee Kim, Youngjun Yoo, Seunghyun Park, Jinkyu Kim, and Jaekoo Lee. "SelfReg: Self-supervised Contrastive Regularization for Domain Generalization." ICCV, 2021). - [paper link](https://openaccess.thecvf.com/content/ICCV2021/papers/Kim_SelfReg_Self-Supervised_Contrastive_Regularization_for_Domain_Generalization_ICCV_2021_paper.pdf)
+
+## Citation
+```
+@inproceedings{kim2021selfreg,
+  title={Selfreg: Self-supervised contrastive regularization for domain generalization},
+  author={Kim, Daehee and Yoo, Youngjun and Park, Seunghyun and Kim, Jinkyu and Lee, Jaekoo},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={9619--9628},
+  year={2021}
+}
+```
 
 ## Description
 ![method](https://user-images.githubusercontent.com/44395361/112263134-26ebff80-8cb2-11eb-9934-d74f44440235.png)
